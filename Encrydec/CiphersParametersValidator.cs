@@ -20,8 +20,8 @@ namespace Encrydec
         {
             return cipherType switch
             {
-                Ceasar CipherType => CheckCeasarKey(key, message),
-                Vigner CipherType => CheckVignerKey(key, message),
+                Ceasar  => CheckCeasarKey(key, message),
+                Vigner  => CheckVignerKey(key, message),
                 _ => CheckTwoSquareCipherKey(key, message)
             };
         }
