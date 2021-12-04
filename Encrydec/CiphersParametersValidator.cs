@@ -6,10 +6,6 @@ namespace Encrydec
 {
     public static class CiphersParametersValidator
     {
-        /*
-         * Если в исходном тексте встретится \n его надо будет зашифровать. Для этого он должен быть
-         * в таблице (ключ), как элемент. В текущем формате записи входных таблиц это невозможно.
-         */
         private static bool CheckMessage(string message, CipherType cipherType)
         {
             return cipherType switch
@@ -41,7 +37,7 @@ namespace Encrydec
             
             if (int.TryParse(key, out var value))
             {
-                isValid = value > 1 && value < message.Length;
+                isValid = value > 0 && value < message.Length;
             }
 
             return isValid;
@@ -49,20 +45,7 @@ namespace Encrydec
         
         private static bool CheckPolybiusSquareKey(string key, string message)
         {
-            var isValid = false;
-
-            if (key.Length > 0)
-            {
-                var rows = key.Split('\n', StringSplitOptions.RemoveEmptyEntries);
-
-                if (rows.Length > 1)
-                {
-                    isValid = CheckColumnsAmount(rows) && CheckTableElementsUniqueness(rows)
-                            && CheckIfKeyContainsAllMessageLetters(key, message);
-                }
-            }
-
-            return isValid;
+            return key.Length > 0 && message.Length>0;
         }
         
         private static bool CheckTwoSquareCipherKey(string key, string message)

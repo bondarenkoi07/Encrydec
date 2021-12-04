@@ -18,6 +18,7 @@ namespace Encrydec
         [UI] private TextView _keyField;
         [UI] private ComboBox _workModeField;
         [UI] private ComboBox _cryptoAlgorithmTypeField;
+        private IEncryptor[] _encryptors =  { new Ceasar(), new Vigner() };
 
         public MainWindow() : this(new Builder("MainWindow.glade")) {}
 
@@ -39,34 +40,20 @@ namespace Encrydec
 
         private void StartButtonClicked(object sender, EventArgs a)
         {
-            switch ((CipherType)_cryptoAlgorithmTypeField.Active)
+
+            var encryptor = _encryptors[_cryptoAlgorithmTypeField.Active];            
+            
+            if (_workModeField.Active == 0)
             {
-                case CipherType.Scytale:
-                {
-                    var scytale = new Scytale(_inputTextField.Buffer.Text, Convert.ToInt32(_keyField.Buffer.Text));
-                    
-                    _outputTextField.Buffer.Text = _workModeField.Active == 0 ? scytale.EncryptedMessage
-                            : scytale.DecryptedMessage;
-                    break;
-                }
-                case CipherType.PolybiusSquare:
-                {
-                    var polybiusSquare = new PolybiusSquare(_inputTextField.Buffer.Text,
-                            _keyField.Buffer.Text);
-
-                    _outputTextField.Buffer.Text = _workModeField.Active == 0 ? polybiusSquare.EncryptedMessage
-                            : polybiusSquare.DecryptedMessage;
-                    break;
-                }
-                default:
-                {
-                    var twoSquareCipher = new TwoSquareCipher(_inputTextField.Buffer.Text,
-                            _keyField.Buffer.Text);
-
-                    _outputTextField.Buffer.Text = _workModeField.Active == 0 ? twoSquareCipher.EncryptedMessage
-                            : twoSquareCipher.DecryptedMessage;
-                    break;
-                }
+                _outputTextField.Buffer.Text = encryptor
+                    .Encrypt(_inputTextField.Buffer.Text,
+                    _keyField.Buffer.Text);
+            }
+            else
+            {
+                _outputTextField.Buffer.Text = encryptor
+                    .Decrypt(_inputTextField.Buffer.Text,
+                    _keyField.Buffer.Text);
             }
         }
 

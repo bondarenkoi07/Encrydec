@@ -10,7 +10,7 @@ namespace Encrydec
         {
             Application.Init();
 
-            var application = new Application("roman656.Encrydec", GLib.ApplicationFlags.None);
+            var application = new Application("bondarenkoi07.Encrydec", GLib.ApplicationFlags.None);
             var mainWindow = new MainWindow();
             
             application.Register(GLib.Cancellable.Current);
