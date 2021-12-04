@@ -60,7 +60,7 @@ namespace Encrydec
         private void UpdateStartButtonState()
         {
             _startButton.Sensitive = CiphersParametersValidator.CheckMessageAndKey(_keyField.Buffer.Text,
-                    _inputTextField.Buffer.Text, (CipherType)_cryptoAlgorithmTypeField.Active);
+                    _inputTextField.Buffer.Text, _encryptors[_cryptoAlgorithmTypeField.Active]);
 
         }
     }

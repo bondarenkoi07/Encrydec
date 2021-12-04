@@ -6,32 +6,32 @@ namespace Encrydec
 {
     public static class CiphersParametersValidator
     {
-        private static bool CheckMessage(string message, CipherType cipherType)
+        private static bool CheckMessage(string message, IEncryptor cipherType)
         {
             return cipherType switch
             {
-                CipherType.Scytale => message.Length > 0,
-                CipherType.PolybiusSquare => message.Length > 0 && !message.Contains('\n'),
+                Ceasar  => message.Length > 0,
+                Vigner  => message.Length > 0 && !message.Contains('\n'),
                 _ => message.Length > 0 && !message.Contains('\n') && message.Length % 2 == 0
             };
         }
         
-        private static bool CheckKey(string key, string message, CipherType cipherType)
+        private static bool CheckKey(string key, string message, IEncryptor cipherType)
         {
             return cipherType switch
             {
-                CipherType.Scytale => CheckScytaleKey(key, message),
-                CipherType.PolybiusSquare => CheckPolybiusSquareKey(key, message),
+                Ceasar CipherType => CheckCeasarKey(key, message),
+                Vigner CipherType => CheckVignerKey(key, message),
                 _ => CheckTwoSquareCipherKey(key, message)
             };
         }
         
-        public static bool CheckMessageAndKey(string key, string message, CipherType cipherType)
+        public static bool CheckMessageAndKey(string key, string message, IEncryptor cipherType)
         {
             return CheckMessage(message, cipherType) && CheckKey(key, message, cipherType);
         }
 
-        private static bool CheckScytaleKey(string key, string message)
+        private static bool CheckCeasarKey(string key, string message)
         {
             var isValid = false;
             
@@ -43,7 +43,7 @@ namespace Encrydec
             return isValid;
         }
         
-        private static bool CheckPolybiusSquareKey(string key, string message)
+        private static bool CheckVignerKey(string key, string message)
         {
             return key.Length > 0 && message.Length>0;
         }
