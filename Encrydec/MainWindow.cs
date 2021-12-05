@@ -18,7 +18,7 @@ namespace Encrydec
         [UI] private TextView _keyField;
         [UI] private ComboBox _workModeField;
         [UI] private ComboBox _cryptoAlgorithmTypeField;
-        private IEncryptor[] _encryptors =  { new Ceasar(), new Vigner() };
+        private IEncryptor[] _encryptors =  { new Ceasar(), new Vigner(), new SingleSwap() };
 
         public MainWindow() : this(new Builder("MainWindow.glade")) {}
 

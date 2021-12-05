@@ -115,9 +115,9 @@
             <property name="active">0</property>
             <property name="active_id">0</property>
             <items>
-              <item id="0" translatable="yes">Шифр Скитала</item>
-              <item id="1" translatable="yes">Полибианский квадрат</item>
-              <item id="2" translatable="yes">Шифр Уитстона</item>
+              <item id="0" translatable="yes">Шифр Цезаря</item>
+              <item id="1" translatable="yes">Система Вижнера</item>
+              <item id="2" translatable="yes">Одиночная перестановка</item>
             </items>
           </object>
           <packing>
