@@ -50,7 +50,7 @@ namespace Encrydec
 
         private static bool CheckTable(string key, string message)
         {
-            return true;
+            return message.Length>key.Length && key.Length>1;
         }
     }
 }
