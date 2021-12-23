@@ -1,9 +1,9 @@
 using System;
-using Encrydec.Ciphers;
 using Gtk;
+using lab4.Ciphers;
 using UI = Gtk.Builder.ObjectAttribute;
 
-namespace Encrydec
+namespace lab4
 {
     public class MainWindow : Window
     {

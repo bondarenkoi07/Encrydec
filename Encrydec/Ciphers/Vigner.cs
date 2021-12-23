@@ -1,4 +1,4 @@
-﻿namespace Encrydec.Ciphers
+﻿namespace lab4.Ciphers
 {
     public class Vigner : IEncryptor
     {
@@ -17,22 +17,20 @@
         private string Do(string message, string key, bool encrypting)
         {
             key = key.ToUpper();
-            var gamma = GetRepeatKey(key, message.Length);
             var retValue = "";
-            var q = Alphabet.Length;
             message = message.ToUpper();
             for (int i = 0; i < message.Length; i++)
             {
                 var alphabetIndex = Alphabet.IndexOf(message[i]);
-                var codeIndex = Alphabet.IndexOf(gamma[i]);
-                if (alphabetIndex < 0)
-                {
-                    retValue += message[i].ToString();
-                }
-                else
-                {
-                    retValue += Alphabet[(q + alphabetIndex + ((encrypting ? 1 : -1) * codeIndex)) % q].ToString();
-                }
+                var codeIndex = Alphabet.IndexOf(key[i%key.Length]);
+
+                retValue += message[i]==' '? ' '
+                    : encrypting
+                    ? Alphabet[(alphabetIndex + codeIndex) % Alphabet.Length].ToString().ToLower()
+                    : alphabetIndex < codeIndex
+                        ? Alphabet[alphabetIndex - codeIndex + Alphabet.Length].ToString().ToLower()
+                        : Alphabet[(alphabetIndex - codeIndex) % Alphabet.Length].ToString().ToLower();
+
             }
 
             return retValue;

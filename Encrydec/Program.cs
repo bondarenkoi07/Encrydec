@@ -1,7 +1,7 @@
 using System;
 using Gtk;
 
-namespace Encrydec
+namespace lab4
 {
     public static class Program
     {
@@ -10,7 +10,7 @@ namespace Encrydec
         {
             Application.Init();
 
-            var application = new Application("bondarenkoi07.Encrydec", GLib.ApplicationFlags.None);
+            var application = new Application("bondarenkoi07.lab4", GLib.ApplicationFlags.None);
             var mainWindow = new MainWindow();
             
             application.Register(GLib.Cancellable.Current);

@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Runtime.Serialization;
 
-namespace Encrydec.Ciphers
+namespace lab4.Ciphers
 {
     public class SingleSwap:IEncryptor
     {

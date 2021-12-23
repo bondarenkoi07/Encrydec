@@ -1,5 +1,5 @@
 ﻿
-namespace Encrydec.Ciphers {
+namespace lab4.Ciphers {
     public interface IEncryptor
     {
         string Encrypt(string message, string key);

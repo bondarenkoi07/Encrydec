@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Encrydec.Ciphers
+namespace lab4.Ciphers
 {
     public class Ceasar:IEncryptor
     {

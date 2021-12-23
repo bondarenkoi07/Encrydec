@@ -1,8 +1,8 @@
 using System;
 using System.Linq;
-using Encrydec.Ciphers;
+using lab4.Ciphers;
 
-namespace Encrydec
+namespace lab4
 {
     public static class CiphersParametersValidator
     {
